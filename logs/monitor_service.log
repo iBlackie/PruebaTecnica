@@ -1,0 +1,14 @@
+{"timestamp": "2025-07-15T19:27:17.551029Z", "level": "INFO", "message": "Configuration reloaded"}
+{"timestamp": "2025-07-15T19:27:17.553808Z", "level": "INFO", "message": "REST API running on port 8080"}
+{"timestamp": "2025-07-15T19:27:17.564017Z", "level": "INFO", "message": "Connected to MySQL"}
+{"timestamp": "2025-07-15T19:27:17.565610Z", "level": "WARNING", "message": "{\"id\": 5, \"name\": \"Pressure\", \"value\": 60, \"updated_at\": \"2025-07-14T21:19:08\"}"}
+{"timestamp": "2025-07-15T19:27:17.565926Z", "level": "INFO", "message": "Processed 3 rows."}
+{"timestamp": "2025-07-15T19:28:18.380855Z", "level": "INFO", "message": "SIGHUP recibido: recargando configuraci\u00f3n..."}
+{"timestamp": "2025-07-15T19:28:18.390228Z", "level": "INFO", "message": "Configuration reloaded"}
+{"timestamp": "2025-07-15T19:28:18.390755Z", "level": "INFO", "message": "MySQL connection closed for hot swap."}
+{"timestamp": "2025-07-15T19:28:18.391001Z", "level": "INFO", "message": "REST port changed: 8080 \u2192 9090"}
+{"timestamp": "2025-07-15T19:28:18.391240Z", "level": "INFO", "message": "Shutting down REST API on port 8080"}
+{"timestamp": "2025-07-15T19:28:18.461160Z", "level": "INFO", "message": "REST API running on port 9090"}
+{"timestamp": "2025-07-15T19:28:18.473384Z", "level": "INFO", "message": "Connected to MySQL"}
+{"timestamp": "2025-07-15T19:28:18.475252Z", "level": "WARNING", "message": "{\"id\": 5, \"name\": \"Pressure\", \"value\": 60, \"updated_at\": \"2025-07-14T21:19:08\"}"}
+{"timestamp": "2025-07-15T19:28:18.475671Z", "level": "INFO", "message": "Processed 3 rows."}

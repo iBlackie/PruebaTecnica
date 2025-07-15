@@ -15,7 +15,7 @@ rest_server = None
 rest_server_thread = None
 current_rest_port = None
 
-# --- Configuración inicial ---
+# Configuración inicial
 CONFIG_FILE = 'config.json'
 LOG_FILE = '/var/log/monitor_service.log'
 config_lock = threading.Lock()
@@ -26,7 +26,7 @@ last_status = {
     'alerts': 0
 }
 
-# --- Logger JSON ---
+#Logger JSON
 class JSONFormatter(logging.Formatter):
     def format(self, record):
         log_record = {
@@ -42,7 +42,7 @@ file_handler = logging.FileHandler(LOG_FILE)
 file_handler.setFormatter(JSONFormatter())
 logger.addHandler(file_handler)
 
-# --- Función para cargar configuración ---
+#Función para cargar configuración
 def load_config():
     global current_config
     with config_lock:
@@ -50,7 +50,7 @@ def load_config():
             current_config = json.load(f)
         logger.info('Configuration reloaded')
 
-# --- Monitor de MySQL ---
+#Monitor de MySQL
 def monitor_loop():
     global last_status, conn
     old_cfg = {}
@@ -114,7 +114,7 @@ def monitor_loop():
 
             time.sleep(cfg['query_interval'])
 
-# --- REST API ---
+# REST API
 app = Flask(__name__)
 
 @app.route('/status', methods=['GET'])
@@ -152,7 +152,7 @@ def start_rest_server(port):
     rest_server_thread = rest_server
     rest_server.start()
 
-# --- Manejo de señales ---
+# Manejo de señales
 def handle_sighup(signum, frame):
     global conn, current_rest_port
 
@@ -192,7 +192,7 @@ if hasattr(signal, 'SIGHUP'):
 signal.signal(signal.SIGTERM, handle_sigterm)
 signal.signal(signal.SIGINT, handle_sigterm)
 
-# --- Main ---
+# Main
 if __name__ == '__main__':
     if not os.path.exists('/var/log'):
         os.makedirs('/var/log')
@@ -205,7 +205,6 @@ if __name__ == '__main__':
     t_monitor.start()
 
     try:
-        # Mantiene el proceso vivo
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
