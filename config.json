@@ -1,0 +1,10 @@
+{
+  "mysql_host": "host.docker.internal",
+  "mysql_port": 3307,
+  "mysql_user": "monitor",
+  "mysql_password": "monitor123",
+  "mysql_db": "monitoring",
+  "query_interval": 10,
+  "rest_port": 8080,
+  "threshold": 50
+}

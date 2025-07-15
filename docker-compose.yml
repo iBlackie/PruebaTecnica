@@ -1,0 +1,35 @@
+services:
+  monitor_service:
+    restart: always
+    build:
+      context: .
+    container_name: monitor_service
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    volumes:
+      - /mnt/d/VSC/Scripts:/app
+      - ./Quartux.py:/app/Quartux.py     
+      - ./config.json:/app/config.json   
+      - ./logs:/var/log                  
+    depends_on:
+      - mysql
+
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: monitoring
+      MYSQL_USER: monitor
+      MYSQL_PASSWORD: monitor123
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    command: --default-authentication-plugin=mysql_native_password
+
+volumes:
+  mysql_data:
