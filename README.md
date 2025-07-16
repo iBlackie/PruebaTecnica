@@ -12,6 +12,7 @@ Docker.
 - Docker & Docker Compose
 - Linux x64 o WSL2 en Windows
 - Make
+- Ubuntu
 
 ---
 
@@ -86,7 +87,7 @@ Se ejecuta mediante docker-compose build y docker-compose up, se puede camabiar 
 
 ## Makefile para ejecutar en Ubuntu
 
-Incluye un Makefile para automatizar la pruebas
+Incluye un Makefile para automatizar la pruebas. Este Makefile requiere un sistema basado en Linux con make, docker, curl, y sed disponibles.
 
 - make full (Ejecuta la automatización de pruebas en Linux)
 
