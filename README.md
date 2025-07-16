@@ -61,12 +61,13 @@ El servicio expone: GET /status
 
 Devuelve el último estado consultado como JSON:
 
+```json
 {
   "last_check": "2025-07-08T10:23:00Z",
   "rows_processed": 3,
   "alerts": 1
 }
-
+```
 ---
 
 ## Docker
@@ -133,9 +134,10 @@ Se generan en /var/log/monitor_service.log dentro del contenedor.
 
 Ejemplo:
 
+```json
 {"timestamp": "2025-07-08T10:23:00Z", "level": "INFO", "message": "Processed 3 rows."}
 {"timestamp": "2025-07-16T16:00:17.077626Z", "level": "WARNING", "message": "{\"id\": 5, \"name\": \"Pressure\", \"value\": 60, \"updated_at\": \"2025-07-14T21:19:08\""}
-
+```
 ---
 
 ## Endpoint
@@ -144,12 +146,13 @@ curl http://localhost:8080/status
 
 Respuesta esperada:
 
+```json
 {
   "last_check": "2025-07-15T16:44:03.508654Z",
   "rows_processed": 3,
   "alerts": 1
 }
-
+```
 Si el puerto cambia al 9090, cambia:
 
 curl http://localhost:9090/status
@@ -180,7 +183,7 @@ IMPORTANTE: Leer primero el JSON, para saber si el primer puerto a testear es el
 
 Por último, en la terminal ejecutamos el siguiente comando para parar de forma ordenada, esto se ve reflejado el en los logs del monitor.
 
--docker kill -s SIGTERM monitor_service
+- docker kill -s SIGTERM monitor_service
 ---
 
 ## Seguridad
@@ -192,3 +195,5 @@ Se pide una contraseña, la cual está en el JSON, si no se tiene, el sistema no
 ##Autor
 
 Este proyecto es propiedad de Kevin Cárdenas Téllez
+
+---
