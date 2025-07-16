@@ -99,7 +99,7 @@ def monitor_loop():
                             logger.warning(json.dumps(row_log))
                             alerts += 1
 
-                    # Log final claro y único
+                    # Log final
                     logger.info(f"Processed {len(rows)} rows.")
 
                     last_status = {

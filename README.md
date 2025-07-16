@@ -27,20 +27,20 @@ Docker.
   "query_interval": 10,
   "rest_port": 8080
 }
-
+```
 ---
 
 ## Contenido del Repositorio
 
- Quartux.py # Código principal 
- config.json # Configuración del servicio
- init.sql # Script para crear la base de datos
- logs/ # Directorio de logs
- Dockerfile # Imagen base del servicio
- docker-compose.yml # Orquestación del servicio y base de datos
- Makefile # Automatización para compilación
- evidencia/ # Capturas 
- README.md # Este archivo
+ - Quartux.py # Código principal 
+ - config.json # Configuración del servicio
+ - init.sql # Script para crear la base de datos
+ - logs/ # Directorio de logs
+ - Dockerfile # Imagen base del servicio
+ - docker-compose.yml # Orquestación del servicio y base de datos
+ - Makefile # Automatización para compilación
+ - evidencia/ # Capturas 
+ - README.md # Este archivo
 
 ---
 
@@ -73,11 +73,11 @@ Devuelve el último estado consultado como JSON:
 
 Archivos importantes:
 
--Dockerfile – Construye la imagen del servicio
+- Dockerfile – Construye la imagen del servicio
 
--docker-compose.yml – Lanza el contenedor junto a MySQL
+- docker-compose.yml – Lanza el contenedor junto a MySQL
 
--init.sql – Crea la base de datos y tabla de ejemplo
+- init.sql – Crea la base de datos y tabla de ejemplo
 
 Se ejecuta mediante docker-compose build y docker-compose up, se puede camabiar el código sin reconstruir imagen.
 
@@ -87,7 +87,7 @@ Se ejecuta mediante docker-compose build y docker-compose up, se puede camabiar 
 
 Incluye un Makefile para automatizar la pruebas
 
--make full - Ejecuta la automatización de pruebas en Linux
+- make full (Ejecuta la automatización de pruebas en Linux)
 
 ¿Qué hace? Un hot swap
 
@@ -109,6 +109,7 @@ O si empieza con el puerto 9090, pasa al puerto 8080.
 
 El siguiente script se ejecuta automáticamente al lanzar el contenedor MySQL gracias al volumen ./init.sql
 
+```sql
 CREATE DATABASE IF NOT EXISTS monitoring;
 USE monitoring;
 
@@ -123,7 +124,7 @@ INSERT INTO metrics (name, value) VALUES
 ('Temperature', 42),
 ('Pressure', 60),
 ('Humidity', 30);
-
+```
 ---
 
 ## Evidencia
