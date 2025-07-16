@@ -6,7 +6,7 @@ Docker.
 
 ---
 
-## 🧩 Requisitos
+## Requisitos
 
 - Python 3.10 o superior
 - Docker & Docker Compose
@@ -15,7 +15,7 @@ Docker.
 
 ---
 
-## ⚙️ Configuración (`config.json`)
+## Configuración (`config.json`)
 
 ```json
 {
@@ -83,13 +83,13 @@ Se ejecuta mediante docker-compose build y docker-compose up, se puede camabiar 
 
 ---
 
-## Makefile
+## Makefile para ejecutar en Ubuntu
 
 Incluye un Makefile para automatizar la pruebas
 
 -make full - Ejecuta la automatización de pruebas en Linux
 
-¿Qué hace?
+¿Qué hace? Un hot swap
 
 Construye los contenedores
 
@@ -100,6 +100,8 @@ Cambia el puerto en config.json a 9090
 Lanza un SIGHUP al contenedor
 
 Hace un curl al nuevo puerto (9090)
+
+O si empieza con el puerto 9090, pasa al puerto 8080.
 
 ---
 
@@ -131,7 +133,7 @@ Se generan en /var/log/monitor_service.log dentro del contenedor.
 Ejemplo:
 
 {"timestamp": "2025-07-08T10:23:00Z", "level": "INFO", "message": "Processed 3 rows."}
-{"timestamp": "2025-07-08T10:24:00Z", "level": "WARNING", "message": "Threshold exceeded: {...}"}
+{"timestamp": "2025-07-16T16:00:17.077626Z", "level": "WARNING", "message": "{\"id\": 5, \"name\": \"Pressure\", \"value\": 60, \"updated_at\": \"2025-07-14T21:19:08\""}
 
 ---
 
@@ -150,6 +152,39 @@ Respuesta esperada:
 Si el puerto cambia al 9090, cambia:
 
 curl http://localhost:9090/status
+
+---
+
+## Prueba en docker
+
+Abrir cmd, entrar en la carpeta donde se guardan los archivos y ejecutar comandos:
+
+- docker-compose build
+
+- docker-compose up
+
+- w (para abrir docker y seguir en la terminal de docker)
+
+Una vez en la terminal de docker:
+
+- Invoke-WebRequest -Uri http://localhost:8080/status -Headers $headers
+
+Una vez ejecutado esto, vamos al JSON y cambiamos el puerto 8080 al 9090, guardamos y regresamos a la terminal para probar la recarga dinámica con la señal SIGHUP:
+
+- docker kill -s HUP monitor_service (AQUI PROBAMOS EL SIGHUP, PARA RECARGA DINÁMICA)
+
+- Invoke-WebRequest -Uri http://localhost:9090/status -Headers $headers
+
+IMPORTANTE: Leer primero el JSON, para saber si el primer puerto a testear es el 8080 o el 9090, ya que de esto depende que pondremos en el endpoint status. 
+
+Por último, en la terminal ejecutamos el siguiente comando para parar de forma ordenada, esto se ve reflejado el en los logs del monitor.
+
+-docker kill -s SIGTERM monitor_service
+---
+
+## Seguridad
+
+Se pide una contraseña, la cual está en el JSON, si no se tiene, el sistema no funciona y nos lanza un mensaje de "Unauthorized"
 
 ---
 

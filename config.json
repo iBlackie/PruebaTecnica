@@ -5,6 +5,7 @@
   "mysql_password": "monitor123",
   "mysql_db": "monitoring",
   "query_interval": 10,
-  "rest_port": 9090,
-  "threshold": 50
+  "rest_port": 8080,
+  "threshold": 50,
+  "api_key":"123"
 }

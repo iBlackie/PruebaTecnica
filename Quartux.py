@@ -6,7 +6,7 @@ import signal
 import logging
 import pymysql
 import signal
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from datetime import datetime
 from werkzeug.serving import make_server
 
@@ -119,6 +119,9 @@ app = Flask(__name__)
 
 @app.route('/status', methods=['GET'])
 def status():
+    api_key = request.headers.get('X-API-KEY')
+    if api_key != current_config.get('api_key'):
+        return jsonify({'error': 'Unauthorized'}), 401
     return jsonify(last_status)
 
 def start_rest_server(port):
@@ -140,6 +143,7 @@ def start_rest_server(port):
         def shutdown(self):
             logger.info(f"Shutting down REST API on port {self.port}")
             self.server.shutdown()
+            self.server.server_close()
 
     if rest_server_thread:
         try:
