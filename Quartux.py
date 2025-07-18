@@ -48,7 +48,7 @@ def load_config():
     with config_lock:
         with open(CONFIG_FILE) as f:
             current_config = json.load(f)
-        logger.info('Configuration reloaded')
+        logger.info('Configuration loaded')
 
 #Monitor de MySQL
 def monitor_loop():
@@ -71,6 +71,7 @@ def monitor_loop():
             try:
                 conn = pymysql.connect(
                     host=cfg['mysql_host'],
+                    port=cfg['mysql_port'],
                     user=cfg['mysql_user'],
                     password=cfg['mysql_password'],
                     database=cfg['mysql_db']
